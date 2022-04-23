@@ -33,15 +33,18 @@ import {
 
 
 var DeviceInfo = require('react-native-device-info');
-
+let trop = 1;
+var Gh="";
 function identifier(){
+  if(trop==1){
   let In="ABCDEFGHIJKLMNOPQRSTabcdefghijklmopqrstuvwxyz0123456789!@#$%^&*()_+{}[]";
-  let Gh="";
   for(let i=0;i<In.length;i++){
 if(i%2==0){
   Gh=Gh+In[Math.floor(Math.random() * (In.length-0) + 0)];
 }
   }
+  trop=trop+1;
+}
   return Gh;
 }
 
@@ -49,7 +52,7 @@ class App extends Component{
 
   render(){
   return (
-            <Text >AutoGenerate - {identifier()}</Text> 
+            <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
   );
         }
 };
