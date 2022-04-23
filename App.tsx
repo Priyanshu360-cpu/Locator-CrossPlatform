@@ -30,30 +30,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
- 
+
+
 var DeviceInfo = require('react-native-device-info');
- 
+
+function rando(){
+ return "Apple"
+}
+
 class App extends Component{
-  constructor(){
-    super();
-    this.state={
-      DeviceID : ' '
-    }
-  }
-  getDeviceID=()=>{
- 
-    var id = DeviceInfo.getUniqueID();
- 
-    this.setState({
- 
-      DeviceID : id
-     
-    })
- 
-  }
+
   render(){
   return (
-            <Text >App.js - {this.state.DeviceID}</Text> 
+            <Text >App.js - {rando()}</Text> 
   );
         }
 };
