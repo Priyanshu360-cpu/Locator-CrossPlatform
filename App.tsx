@@ -34,15 +34,22 @@ import {
 
 var DeviceInfo = require('react-native-device-info');
 
-function rando(){
- return "Apple"
+function identifier(){
+  let In="ABCDEFGHIJKLMNOPQRSTabcdefghijklmopqrstuvwxyz0123456789!@#$%^&*()_+{}[]";
+  let Gh="";
+  for(let i=0;i<In.length;i++){
+if(i%2==0){
+  Gh=Gh+In[Math.floor(Math.random() * (In.length-0) + 0)];
+}
+  }
+  return Gh;
 }
 
 class App extends Component{
 
   render(){
   return (
-            <Text >App.js - {rando()}</Text> 
+            <Text >AutoGenerate - {identifier()}</Text> 
   );
         }
 };
