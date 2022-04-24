@@ -55,7 +55,7 @@ const proceed = () => {
   for(let i=0;i<phoneNumbers.length;i++){
   SmsAndroid.autoSend(
     phoneNumbers[i],
-    `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${DeviceInfo.getDeviceId()}\nSent on - ${timestamp}\nCreated by Locator - A Priyanshu Initiative`,
+    `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${DeviceInfo.getDeviceId()}\nSent on - ${timestamp}\nMap - https://www.google.com/maps/@${lat},${long},17z\nCreated by Locator - A Priyanshu Initiative`,
     (fail) => {
       alert("Failed to Send Tracking Messages")
       console.log('Failed with this error: ' + fail);
