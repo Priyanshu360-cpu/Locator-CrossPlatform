@@ -39,7 +39,7 @@ let trop = 1;
 var Gh="";
 function identifier(){
   if(trop==1){
-  let In="ABCDEFGHIJKLMNOPQRSTabcdefghijklmopqrstuvwxyz0123456789!@#$%^&*()_+{}[]";
+  let In="ABCDEFGHIJKLMNOPQRSTabcdefghijklmopqrstuvwxyz0123456789!@#$%^&*_+";
   for(let i=0;i<In.length;i++){
 if(i%2==0){
   Gh=Gh+In[Math.floor(Math.random() * (In.length-0) + 0)];
@@ -49,27 +49,37 @@ if(i%2==0){
 }
   return Gh;
 }
+let lat: number;
+let long: number;
+let altitude: number;
+let timestamp : string;
+
 function geolocation(){
- let pol: number;
   Geolocation.getCurrentPosition(
     (position) => {
       console.log(position);
-      pol=position.coords.latitude;
+      lat=position.coords.latitude;
+      long=position.coords.longitude;
+      altitude=position.coords.altitude;
+      timestamp=new Date(position.timestamp).toLocaleString("en-in");
     },
     (error) => {
       console.log(error.code, error.message);
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
 );
-setTimeout(()=>{
-  console.log(pol+"("),1000
-});
-return pol;
+setTimeout(()=>{console.log(lat)},1000);
+
 }
+geolocation();
 const proceed = () => {
+  let phoneNumbers = {
+    "addressList": ["****", "***", "****"]
+  };
+  
   SmsAndroid.autoSend(
-    "9647640540",
-    `Location Coordinates\nLatitude - 23.5350475\nLongitude - 87.3380425\nTrack them on https://localhost:3000/${identifier()}\nCreated by Locator - A Priyanshu Initiative`,
+    JSON.stringify(phoneNumbers),
+    `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${identifier()}\nSent on - ${timestamp}\nCreated by Locator - A Priyanshu Initiative`,
     (fail) => {
       alert("Failed to Send Tracking Messages")
       console.log('Failed with this error: ' + fail);
@@ -112,7 +122,8 @@ class App extends Component{
         <View style={styles.container}>
           <View style={styles.container}>
           <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
-          <Text>{geolocation()}</Text>
+          <Text>Geolocation - {lat}, {long}</Text>
+          <Text>TimeStamp - {timestamp}</Text>
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={onPress}>
