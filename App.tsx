@@ -1,11 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
- 
+
 import React from 'react';
 import { Component }  from 'react';
 import Geolocation from 'react-native-geolocation-service';
@@ -22,7 +15,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -31,24 +23,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import SmsAndroid from 'react-native-get-sms-android';
-
-
-
 var DeviceInfo = require('react-native-device-info');
-let trop = 1;
-var Gh="";
-function identifier(){
-  if(trop==1){
-  let In="ABCDEFGHIJKLMNOPQRSTabcdefghijklmopqrstuvwxyz0123456789!@#$%^&*_+";
-  for(let i=0;i<In.length;i++){
-if(i%2==0){
-  Gh=Gh+In[Math.floor(Math.random() * (In.length-0) + 0)];
-}
-  }
-  trop=trop+1;
-}
-  return Gh;
-}
+
 let lat: number;
 let long: number;
 let altitude: number;
@@ -74,12 +50,12 @@ setTimeout(()=>{console.log(lat)},1000);
 geolocation();
 const proceed = () => {
   let phoneNumbers = {
-    "addressList": ["****", "***", "****"]
+    "addressList": ["9647640540", "6290805646", "6393726801"]
   };
   
   SmsAndroid.autoSend(
     JSON.stringify(phoneNumbers),
-    `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${identifier()}\nSent on - ${timestamp}\nCreated by Locator - A Priyanshu Initiative`,
+    `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${DeviceInfo.getDeviceId()}\nSent on - ${timestamp}\nCreated by Locator - A Priyanshu Initiative`,
     (fail) => {
       alert("Failed to Send Tracking Messages")
       console.log('Failed with this error: ' + fail);
@@ -121,7 +97,7 @@ class App extends Component{
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           <View style={styles.container}>
-          <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
+          <Text >Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
           <Text>Geolocation - {lat}, {long}</Text>
           <Text>TimeStamp - {timestamp}</Text>
             <TouchableOpacity
