@@ -54,6 +54,7 @@ const proceed = () => {
     "9647640540",
     "Location Coordinates\nLatitude - 23.5350475\nLongitude - 87.3380425\nTrack them on https://localhost:3000/p0847458yuLSer\nCreated by Locator - A Priyanshu Initiative",
     (fail) => {
+      alert("Failed to Send Tracking Messages")
       console.log('Failed with this error: ' + fail);
     },
     (success) => {
