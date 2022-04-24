@@ -23,6 +23,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import SmsAndroid from 'react-native-get-sms-android';
+import { getPhoneNumber, getPhoneNumberSync } from 'react-native-device-info';
 var DeviceInfo = require('react-native-device-info');
 
 let lat: number;
@@ -49,12 +50,10 @@ setTimeout(()=>{console.log(lat)},1000);
 }
 geolocation();
 const proceed = () => {
-  let phoneNumbers = {
-    "addressList": ["9647640540", "6290805646", "6393726801"]
-  };
-  
+  let phoneNumbers = ["**","**","**"];
+  for(let i=0;i<phoneNumbers.length;i++){
   SmsAndroid.autoSend(
-    JSON.stringify(phoneNumbers),
+    phoneNumbers[i],
     `Location Coordinates\nLatitude - ${lat}\nLongitude - ${long}\nAltitude - ${altitude}\nTrack them on https://localhost:3000/${DeviceInfo.getDeviceId()}\nSent on - ${timestamp}\nCreated by Locator - A Priyanshu Initiative`,
     (fail) => {
       alert("Failed to Send Tracking Messages")
@@ -65,6 +64,7 @@ const proceed = () => {
       console.log('SMS sent successfully');
     },
   );
+  }
 };
 const onPress = async () => {
   if (Platform.OS === 'android') {
