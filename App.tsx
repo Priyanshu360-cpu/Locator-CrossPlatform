@@ -14,6 +14,7 @@ import {
   Platform,
   useColorScheme,
   View,
+  RefreshControl
 } from 'react-native';
 import {
   Colors,
@@ -31,6 +32,7 @@ let long: number;
 let altitude: number;
 let timestamp : string;
 
+
 function geolocation(){
   Geolocation.getCurrentPosition(
     (position) => {
@@ -45,7 +47,6 @@ function geolocation(){
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
 );
-setTimeout(()=>{console.log(lat)},1000);
 
 }
 geolocation();
@@ -95,6 +96,7 @@ class App extends Component{
   render(){
     return (
       <SafeAreaView style={{flex: 1}}>
+        
         <View style={styles.container}>
           <View style={styles.container}>
           <Text >Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
@@ -110,7 +112,9 @@ class App extends Component{
           </View>
          
         </View>
+        
       </SafeAreaView>
+
     );
  
         }
