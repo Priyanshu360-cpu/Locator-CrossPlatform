@@ -52,7 +52,7 @@ if(i%2==0){
 const proceed = () => {
   SmsAndroid.autoSend(
     "9647640540",
-    "Location Coordinates\nLatitude - 23.5350475\nLongitude - 87.3380425\nTrack them on https://localhost:3000/p0847458yuLSer\nCreated by Locator - A Priyanshu Initiative",
+    `Location Coordinates\nLatitude - 23.5350475\nLongitude - 87.3380425\nTrack them on https://localhost:3000/${identifier()}\nCreated by Locator - A Priyanshu Initiative`,
     (fail) => {
       alert("Failed to Send Tracking Messages")
       console.log('Failed with this error: ' + fail);
@@ -69,6 +69,13 @@ const onPress = async () => {
       PermissionsAndroid.PERMISSIONS.SEND_SMS,
       {
         title: 'SMS Permission required',
+        message: 'Grant Permission',
+      },
+    );
+    const lgranted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Location Permission Required',
         message: 'Grant Permission',
       },
     );
