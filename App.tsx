@@ -8,7 +8,7 @@
  
 import React from 'react';
 import { Component }  from 'react';
-
+import Geolocation from 'react-native-geolocation-service';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,6 +16,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  PermissionsAndroid,
   TouchableOpacity,
   Platform,
   useColorScheme,
@@ -29,6 +30,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import SmsAndroid from 'react-native-get-sms-android';
 
 
 
@@ -47,38 +49,75 @@ if(i%2==0){
 }
   return Gh;
 }
-
-class App extends Component{
-
-  render(){
-  return (
-            <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
+const proceed = () => {
+  SmsAndroid.autoSend(
+    "9647640540",
+    "Location Coordinates\nLatitude - 23.5350475\nLongitude - 87.3380425\nTrack them on https://localhost:3000/p0847458yuLSer\nCreated by Locator - A Priyanshu Initiative",
+    (fail) => {
+      console.log('Failed with this error: ' + fail);
+    },
+    (success) => {
+      alert('Location Tracking Started');
+      console.log('SMS sent successfully');
+    },
   );
+};
+const onPress = async () => {
+  if (Platform.OS === 'android') {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.SEND_SMS,
+      {
+        title: 'SMS Permission required',
+        message: 'Grant Permission',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      proceed();
+    } else {
+      alert('SMS Permission Denied');
+    }
+  } else {
+    proceed();
+  }
+};
+class App extends Component{
+  render(){
+    return (
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style={styles.container}>
+          <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={onPress}>
+              <Text style={styles.textStyle}>
+                Start Tracking
+              </Text>
+            </TouchableOpacity>
+          </View>
+         
+        </View>
+      </SafeAreaView>
+    );
+ 
         }
 };
 const styles = StyleSheet.create({
- 
- MainContainer :{
- 
-   justifyContent: 'center',
-   alignItems: 'center',
-   flex:1,
-   paddingTop: (Platform.OS == 'ios' ? 20 : 0)
- 
- },
- 
- button: {
-    
-  paddingTop: 10,
-  paddingBottom: 10,
-  width: '90%',
-  backgroundColor: '#4CAF50',
-},
- 
-TextStyle:{
-    color:'#fff',
-    textAlign:'center',
-}
- 
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  textStyle: {
+    fontSize: 18,
+    color: 'white',
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#f4511e',
+    padding: 10,
+  },
 });
+
 export default App;
