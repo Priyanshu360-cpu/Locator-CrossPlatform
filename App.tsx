@@ -49,6 +49,21 @@ if(i%2==0){
 }
   return Gh;
 }
+function geolocation(){
+ var pol: number;
+  Geolocation.getCurrentPosition(
+    (position) => {
+      console.log(position);
+      pol=position.coords.latitude;
+    },
+    (error) => {
+      console.log(error.code, error.message);
+    },
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+);
+console.log(pol+"(");
+return pol;
+}
 const proceed = () => {
   SmsAndroid.autoSend(
     "9647640540",
@@ -95,6 +110,7 @@ class App extends Component{
         <View style={styles.container}>
           <View style={styles.container}>
           <Text >Your Link - https://localhost:3000/{identifier()}</Text> 
+          <Text>{geolocation()}</Text>
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={onPress}>
