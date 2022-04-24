@@ -11,6 +11,7 @@ import {
   Text,
   PermissionsAndroid,
   TouchableOpacity,
+  Linking, 
   Platform,
   useColorScheme,
   View,
@@ -51,7 +52,7 @@ function geolocation(){
 }
 geolocation();
 const proceed = () => {
-  let phoneNumbers = ["**","**","**"];
+  let phoneNumbers = ["**"];
   for(let i=0;i<phoneNumbers.length;i++){
   SmsAndroid.autoSend(
     phoneNumbers[i],
@@ -99,9 +100,7 @@ class App extends Component{
         
         <View style={styles.container}>
           <View style={styles.container}>
-          <Text >Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
-          <Text>Geolocation - {lat}, {long}</Text>
-          <Text>TimeStamp - {timestamp}</Text>
+          <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`)}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={onPress}>
