@@ -50,7 +50,7 @@ if(i%2==0){
   return Gh;
 }
 function geolocation(){
- var pol: number;
+ let pol: number;
   Geolocation.getCurrentPosition(
     (position) => {
       console.log(position);
@@ -61,7 +61,9 @@ function geolocation(){
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
 );
-console.log(pol+"(");
+setTimeout(()=>{
+  console.log(pol+"("),1000
+});
 return pol;
 }
 const proceed = () => {
