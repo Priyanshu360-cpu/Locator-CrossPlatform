@@ -9,6 +9,7 @@ const UselessTextInput = (props) => {
       placeholder={'Enter Emergency Number'}
       placeholderTextColor="#202020"
       maxLength={40}
+      keyboardType="numeric"
     />
   );
 }
