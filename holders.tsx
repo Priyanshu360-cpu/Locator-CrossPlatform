@@ -11,7 +11,7 @@ const UselessTextInput = (props) => {
   );
 }
 const Placeholder = ()=>{
-const [value, onChangeText] = React.useState('Type your Username');
+const [value, onChangeText] = React.useState('Add Emergency Number');
 return(<UselessTextInput
                         singleline
                         numberOfLines={1}
