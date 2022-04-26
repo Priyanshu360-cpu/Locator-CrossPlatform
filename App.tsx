@@ -98,14 +98,10 @@ const onPress = async () => {
 class App extends Component{
   render(){
     return (
-      <SafeAreaView style={{flex: 1}}>
-       
-        <View style={styles.container}>
-     
-          
+        <View style={styled.container}>
           <ImageBackground source={image} resizeMode="cover" style={styled.image}></ImageBackground>
 <Placeholder></Placeholder>
-          <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`)}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
+          <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`) }style={styles.linkStyle}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={onPress}>
@@ -117,7 +113,7 @@ class App extends Component{
          
        
         
-      </SafeAreaView>
+     
 
     );
  
@@ -137,6 +133,13 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 18,
     color: 'white',
+    
+  },
+  linkStyle: {
+    fontSize: 18,
+    color: 'yellow',
+    backgroundColor: 'blue',
+    textDecorationLine: 'underline'
     
   },
   buttonStyle: {
