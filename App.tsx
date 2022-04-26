@@ -5,17 +5,13 @@ import Geolocation from 'react-native-geolocation-service';
 import type {Node} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   PermissionsAndroid,
   TouchableOpacity,
   Linking, 
   Platform,
-  useColorScheme,
-  View,
-  RefreshControl
+  View
 } from 'react-native';
 import {
   Colors,
@@ -24,6 +20,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
 import SmsAndroid from 'react-native-get-sms-android';
 import { getPhoneNumber, getPhoneNumberSync } from 'react-native-device-info';
 var DeviceInfo = require('react-native-device-info');
@@ -52,7 +49,7 @@ function geolocation(){
 }
 geolocation();
 const proceed = () => {
-  let phoneNumbers = ["**"];
+  let phoneNumbers = ["8637845107"];
   for(let i=0;i<phoneNumbers.length;i++){
   SmsAndroid.autoSend(
     phoneNumbers[i],
@@ -97,7 +94,7 @@ class App extends Component{
   render(){
     return (
       <SafeAreaView style={{flex: 1}}>
-        
+       
         <View style={styles.container}>
           <View style={styles.container}>
           <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`)}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
