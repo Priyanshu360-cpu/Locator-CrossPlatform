@@ -33,7 +33,7 @@ justifyContent: 'center',
     },
     nametag: {
     backgroundColor:'#fcfcfc',
-    padding: 10,
+    padding: 8,
     marginBottom: 10
     },
 
