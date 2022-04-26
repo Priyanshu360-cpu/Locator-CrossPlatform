@@ -3,6 +3,9 @@ import React from 'react';
 import { Component }  from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import type {Node} from 'react';
+import Placeholder from './holders';
+import styled from './styles';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -100,8 +103,8 @@ class App extends Component{
         <View style={styles.container}>
      
           
-          <ImageBackground source={image} resizeMode="cover" style={homestyle.image}></ImageBackground>
-
+          <ImageBackground source={image} resizeMode="cover" style={styled.image}></ImageBackground>
+<Placeholder></Placeholder>
           <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`)}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
             <TouchableOpacity
               style={styles.buttonStyle}
@@ -134,6 +137,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 18,
     color: 'white',
+    
   },
   buttonStyle: {
     alignItems: 'center',
