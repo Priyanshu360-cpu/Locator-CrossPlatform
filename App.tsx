@@ -10,6 +10,7 @@ import {
   PermissionsAndroid,
   TouchableOpacity,
   Linking, 
+  ImageBackground,
   Platform,
   View
 } from 'react-native';
@@ -29,6 +30,7 @@ let lat: number;
 let long: number;
 let altitude: number;
 let timestamp : string;
+const image = { uri: "https://cdn.discordapp.com/attachments/898969590984503296/968542843247415336/CMk8sf0lu8CEAE.png" };
 
 
 function geolocation(){
@@ -96,7 +98,10 @@ class App extends Component{
       <SafeAreaView style={{flex: 1}}>
        
         <View style={styles.container}>
-          <View style={styles.container}>
+     
+          
+          <ImageBackground source={image} resizeMode="cover" style={homestyle.image}></ImageBackground>
+
           <Text onPress={() => Linking.openURL(`https://localhost:3000/${DeviceInfo.getDeviceId()}`)}>Your Link - https://localhost:3000/{DeviceInfo.getDeviceId()}</Text> 
             <TouchableOpacity
               style={styles.buttonStyle}
@@ -107,7 +112,7 @@ class App extends Component{
             </TouchableOpacity>
           </View>
          
-        </View>
+       
         
       </SafeAreaView>
 
@@ -115,12 +120,16 @@ class App extends Component{
  
         }
 };
+const homestyle=StyleSheet.create({
+  image: {
+          flex: 2,
+          justifyContent: "center"
+        },
+  })
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    padding: 20,
+   
   },
   textStyle: {
     fontSize: 18,
