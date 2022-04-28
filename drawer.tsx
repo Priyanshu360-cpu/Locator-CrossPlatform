@@ -11,7 +11,8 @@ const App = () => {
    
       <NavigationContainer independent={true}>
        <Drawer.Navigator initialRouteName="Home" >
-        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Home" component={Home}  options={{headerShown: true,
+    headerTransparent: true,title:"Locator"}}/>
         <Drawer.Screen name="Chatscreen" component={chat} />
       </Drawer.Navigator>
       </NavigationContainer>
