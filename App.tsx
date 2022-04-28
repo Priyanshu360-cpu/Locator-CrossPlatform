@@ -12,7 +12,7 @@ const App = () => {
       <NavigationContainer>
        <Drawer.Navigator initialRouteName="Home" >
         <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="chatscreen" component={chat} />
+        <Drawer.Screen name="Chatscreen" component={chat} />
       </Drawer.Navigator>
       </NavigationContainer>
   );
