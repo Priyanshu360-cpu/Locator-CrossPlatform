@@ -3,15 +3,16 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import  chat from './chatscreen'
 const Drawer = createDrawerNavigator();
-import Appa from './homescreen'
+import Home from './homescreen'
 const App = () => {
   return (
    
       <NavigationContainer>
        <Drawer.Navigator initialRouteName="Home" >
-        <Drawer.Screen name="Home" component={Appa} />
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="chatscreen" component={chat} />
       </Drawer.Navigator>
       </NavigationContainer>
   );
