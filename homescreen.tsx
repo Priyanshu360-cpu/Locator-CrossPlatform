@@ -54,7 +54,7 @@ function geolocation(){
 }
 geolocation();
 const proceed = () => {
-  let phoneNumbers = ["8637845107"];
+  let phoneNumbers = ["**"];
   for(let i=0;i<phoneNumbers.length;i++){
   SmsAndroid.autoSend(
     phoneNumbers[i],
