@@ -1,6 +1,11 @@
-import Realm from "realm";
 
+import Realm from 'realm';
 
-
-const app = new Realm.App({id: "**"});//hidden reaalm id
-export default app;
+export function getRealmApp() {
+   const appId = ''; 
+   const appConfig = {
+     id: appId,
+     timeout: 10000,
+   };
+  return new Realm.App(appConfig);
+}
