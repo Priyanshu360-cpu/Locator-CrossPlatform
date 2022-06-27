@@ -2,7 +2,7 @@
 import Realm from 'realm';
 
 export function getRealmApp() {
-   const appId = ''; 
+   const appId = 'idmap'; 
    const appConfig = {
      id: appId,
      timeout: 10000,
